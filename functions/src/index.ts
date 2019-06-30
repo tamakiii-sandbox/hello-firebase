@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import * as admin from 'firebase-admin';
 import * as express from 'express';
 import * as cors from 'cors';
 import * as BusBoy from 'busboy';
@@ -8,6 +9,8 @@ import * as fs from 'fs';
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
+
+admin.initializeApp();
 
 const app = express();
 
@@ -38,6 +41,12 @@ app.get('/api', (request, response) => {
 app.use(cors({ origin: true }));
 
 exports.app = functions.https.onRequest(app);
+
+export const addMessage = functions.https.onRequest(async (request, response) => {
+  const original = request.query.text;
+  const snapshot = await admin.database().ref('/message').push({ original });
+  response.redirect(303, snapshot.ref.toString());
+});
 
 export const hello = functions.https.onRequest((request, response) => {
   if (request.body.name === undefined) {
