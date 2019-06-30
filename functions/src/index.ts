@@ -42,13 +42,12 @@ exports.app = functions.https.onRequest(app);
 export const hello = functions.https.onRequest((request, response) => {
   if (request.body.name === undefined) {
     response.status(200).send("Hello from Firebase!");
-  }
-  if (request.body.name === "") {
+  } else if (request.body.name === "") {
     console.log(request.body);
     response.status(400).end();
+  } else {
+    response.status(200).send(`Hello ${request.body.name}`);
   }
-
-  response.status(200).send(`Hello ${request.body.name}`);
 });
 
 export const upload = functions.https.onRequest((request, response) => {
