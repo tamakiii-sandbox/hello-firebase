@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/tamakiii-sandbox/hello-firebase/issues"
   },
-  "homepage": "https://github.com/tamakiii-sandbox/hello-firebase#readme"
+  "homepage": "https://github.com/tamakiii-sandbox/hello-firebase#readme",
+  "dependencies": {
+    "firebase-tools": "^7.0.2"
+  }
 }
