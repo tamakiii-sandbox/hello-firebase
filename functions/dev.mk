@@ -1,3 +1,5 @@
+GOOGLE_APPLICATION_CREDENTIALS := secure/awsome-project-245310-8936b1356385.json
+
 all: install setup
 
 install: \
