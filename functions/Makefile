@@ -1,6 +1,13 @@
+install: node_modules
 
-login:
-	npx firebase login
+login: install
+	npx --no-install firebase login
 
-deploy:
-	npx firebase deploy
+deploy: install
+	npx --no-install firebase deploy
+
+node_modules:
+	npm install
+
+clean:
+	rm -rf node_modules
