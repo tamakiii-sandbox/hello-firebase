@@ -1,4 +1,5 @@
 import * as functions from 'firebase-functions';
+import * as express from 'express';
 import * as BusBoy from 'busboy';
 import * as path from 'path';
 import * as os from 'os';
@@ -6,6 +7,34 @@ import * as fs from 'fs';
 
 // Start writing Firebase Functions
 // https://firebase.google.com/docs/functions/typescript
+
+const app = express();
+
+app.get('/', (request, response) => {
+  const date = new Date();
+  const hours = (date.getHours() % 12) + 1; // London is UTC + 1hr
+  response.send(`
+    <!doctype html>
+      <head>
+        <title>Time</title>
+        <link rel="stylesheet" href="/style.css">
+        <script src="/script.js"></script>
+      </head>
+      <body>
+        <p>In London, the clock strikes: <span id="bongs">${'BONG ' . repeat(hours)}</span></p>
+        <button onClick="refresh(this)">Refresh</button>
+      </body>
+    </html>
+  `)
+});
+
+app.get('/api', (request, response) => {
+  const date = new Date();
+  const hours = (date.getHours() % 12) + 1; // London is UTC + 1hr
+  response.json({ bongs: 'BONG ' . repeat(hours) });
+});
+
+exports.app = functions.https.onRequest(app);
 
 export const hello = functions.https.onRequest((request, response) => {
   if (request.body.name === undefined) {

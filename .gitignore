@@ -1,4 +1,4 @@
 /node_modules/
 /.firebase/
 /functions/secure/
-/functions/*-debug.log
+/functions/*.log

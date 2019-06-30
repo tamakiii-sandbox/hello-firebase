@@ -7,10 +7,10 @@ setup:
 	npx --no-install firebase setup:emulators:firestore
 	npx --no-install firebase setup:emulators:database
 
-emulator: install
+emulator: install ../firebase.json
 	npx --no-install firebase emulators:start $(ONLY)
 
-emulator/exec: install
+emulator/exec: install ../firebase.json
 	npx --no-install firebase emulators:exec $(CMD)
 
 build: install package.json $(shell find src -name '*.ts')
