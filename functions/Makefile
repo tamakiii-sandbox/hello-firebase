@@ -20,10 +20,14 @@ node_modules:
 secure:
 	mkdir -p secure
 
-$(GOOGLE_APPLICATION_CREDENTIALS): secure
+secure/awsome-project-245310-8936b1356385.json: secure
 	# Go to https://console.cloud.google.com/iam-admin/serviceaccounts and create key
 	touch $@
+
+.runtimeconfig.json:
+	npx --no-install firebase functions:config:get > .runtimeconfig.json
 
 clean:
 	rm -rf node_modules
 	rm -rf secure
+	rm -rf .runtimeconfig.json

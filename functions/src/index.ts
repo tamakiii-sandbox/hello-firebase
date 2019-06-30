@@ -1,5 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as express from 'express';
+import * as cors from 'cors';
 import * as BusBoy from 'busboy';
 import * as path from 'path';
 import * as os from 'os';
@@ -33,6 +34,8 @@ app.get('/api', (request, response) => {
   const hours = (date.getHours() % 12) + 1; // London is UTC + 1hr
   response.json({ bongs: 'BONG ' . repeat(hours) });
 });
+
+app.use(cors({ origin: true }));
 
 exports.app = functions.https.onRequest(app);
 
