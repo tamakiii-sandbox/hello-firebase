@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/tamakiii-sandbox/hello-firebase#readme",
   "dependencies": {
-    "firebase-tools": "^7.0.2",
-    "tslint": "^5.18.0"
+    "firebase-tools": "^7.0.2"
   }
 }
