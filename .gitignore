@@ -1,0 +1,5 @@
+/node_modules/
+/.firebase/
+/functions/secure/
+/functions/*.log
+/functions/.runtimeconfig.json
