@@ -27,7 +27,12 @@ secure/awsome-project-245310-8936b1356385.json: secure
 .runtimeconfig.json:
 	npx --no-install firebase functions:config:get > .runtimeconfig.json
 
-clean:
+clean-logs:
+	rm -rf hs_err_pid*.log
+	rm -rf firestore-debug.log
+	rm -rf database-debug.log
+
+clean: clean-logs
 	rm -rf node_modules
 	rm -rf secure
 	rm -rf .runtimeconfig.json
